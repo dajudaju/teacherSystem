@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %> --%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link href="<c:url value="../styles/main.css" />" type="text/css" rel="stylesheet" />
+<title>录入成绩</title>
+</head>
+<body>
+    <div class="main">
+        <h2 class="title"><span>录入成绩</span></h2>
+        <form
+			action="${pageContext.request.contextPath }/teaServlet?cmd=setGrade"
+			method="post">
+       <%--  <form:form action="${pageContext.request.contextPath}/tea/saveGrade" modelAttribute="entity"> --%>
+        <fieldset>
+        	<input type="text" style="display: none;" name="sid"
+				value="<%=request.getParameter("sid") %>" />
+			<input type="text" style="display: none;" name="cid"
+				value="<%=request.getParameter("cid") %>" />
+			<input type="text" style="display: none;" name="tid"
+				value="<%=request.getParameter("tid") %>" />
+            <legend>成绩</legend>
+            <p>
+                <label for="name">学生姓名:</label>
+                <input readonly="readonly" type="text" value="<%=request.getParameter("sname") %>" />
+               <%--  <label for="name">${sname}</label> --%>
+            </p>
+            <p>
+                <label for="name">课程名称:</label>
+                <input readonly="readonly" type="text" value="<%=request.getParameter("cname") %>" />
+               <%--  <label for="name">${sname}</label> --%>
+            </p>
+            <p>
+                <label for="type">平时成绩:</label>
+                <input type="text" name="pgrade" />
+                <!-- <form:input path="pgrade" size="50"/>
+                <form:errors path="pgrade" cssClass="error"></form:errors> -->
+            </p>
+            <p>
+                <label for="type">考试成绩:</label>
+                 <input type="text" name="kgrade" />
+                <!-- <form:input path="kgrade" size="50"/>
+                <form:errors path="kgrade" cssClass="error"></form:errors> -->
+            </p>
+            
+            <p>
+              <!-- <form:hidden path="sid"/>
+              <form:hidden path="cid"/> -->
+              <input type="submit" value="保存" class="btn out">
+            </p>
+        </fieldset>
+       <!--  </form:form> -->
+       </form>
+        <p style="color: red">${message}</p>
+        <!-- <form:errors path="*"></form:errors> -->
+    </div>
+</body>
+</html>
